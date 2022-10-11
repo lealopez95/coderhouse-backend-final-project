@@ -1,0 +1,28 @@
+{
+  "name": "coderhouse-backend-final-project",
+  "version": "1.0.0",
+  "description": "Final project for Coderhouse - e-commerce",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "start-dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lealopez95/coderhouse-backend-final-project.git"
+  },
+  "keywords": [
+    "coderhouse",
+    "backend"
+  ],
+  "author": "Leandro E. Lopez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lealopez95/coderhouse-backend-final-project/issues"
+  },
+  "homepage": "https://github.com/lealopez95/coderhouse-backend-final-project#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
