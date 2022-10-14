@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "createdTimestamp": 1665629591116,
+        "name": "a product",
+        "code": "aCode",
+        "image": "anImage",
+        "price": 100.5,
+        "stock": 20
+    },
+    {
+        "id": 3,
+        "createdTimestamp": 1665629786854,
+        "name": "a product",
+        "code": "aCode",
+        "image": "anImage",
+        "price": 100.5,
+        "stock": 20
+    }
+]

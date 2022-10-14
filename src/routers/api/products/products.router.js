@@ -1,23 +1,69 @@
 import express from 'express';
 import { validateIsAdminMiddleware } from '../../middlewares/auth.middleware.js';
+import { ProductsEntityProvider } from '../../../entity-providers/ProductsService.js';
+import { Product } from '../../../entities/Product.js';
 
 const productsRouter = express.Router();
+const productsManager = new ProductsEntityProvider(); 
 
-productsRouter.get('/',  (req, res) => {
-    const productId = req.query.id;
-    res.json({algo: 123});
+
+productsRouter.get('/', async (req, res) => {
+    const response = await productsManager.getAll();
+    res.json(response);
 });
 
-productsRouter.post('/', validateIsAdminMiddleware, (req, res) => {
-    
+productsRouter.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    response = await productsManager.findById(id);
+    res.json(response);
 });
 
-productsRouter.put('/', validateIsAdminMiddleware, (req, res) => {
-    
+productsRouter.post('/', validateIsAdminMiddleware, async (req, res) => {
+    const { name, code, image, price, stock } = req.body;
+    if(!name || !code || !image || !price || !stock) {
+        return res.status(400).json({
+            error: -1,
+            message: 'wrong body format'
+        });
+    }
+    const product = new Product(name, code, image, price, stock);
+    const productId = await productsManager.save(product);
+    return res.status(201).json({
+        product: { ...product, id: productId }
+    });
 });
 
-productsRouter.delete('/', validateIsAdminMiddleware, (req, res) => {
-    
+productsRouter.put('/:id', validateIsAdminMiddleware, async (req, res) => {
+    const { name, code, image, price, stock } = req.body;
+    const id = req.params.id;
+    if(!id || !name || !code || !image || !price || !stock) {
+        return res.status(400).json({
+            error: -1,
+            message: 'wrong body format'
+        });
+    }
+    const product = await productsManager.findById(id);
+    product.setName(name)
+        .setCode(code)
+        .setImage(image)
+        .setPrice(price)
+        .setStock(stock);
+    await productsManager.save(product);
+    return res.status(200).json({
+        product
+    });
+});
+
+productsRouter.delete('/:id', validateIsAdminMiddleware, async (req, res) => {
+    const id = req.params.id;
+    if(!id) {
+        return res.status(400).json({
+            error: -1,
+            message: 'id needed'
+        });
+    }
+    const deletedProduct = await productsManager.deleteById(id);
+    res.json({ deletedProduct });
 });
 
 export { productsRouter };
