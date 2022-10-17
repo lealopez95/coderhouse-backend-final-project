@@ -37,7 +37,7 @@ export class FileManager extends DataProviderInterface { // TODO: this should be
         const lastContentIndex = content.length-1;
         let itemId;
         if(!item.id || item.id === 0) {
-            const itemId = content[lastContentIndex] ? (content[lastContentIndex].id + 1) : 1;
+            itemId = content[lastContentIndex] ? (content[lastContentIndex].id + 1) : 1;
             const itemToAdd = {
                 ...item,
                 id: itemId,

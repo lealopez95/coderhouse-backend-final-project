@@ -1,4 +1,4 @@
-import { BaseEntityProvider } from "./BaseEntityProvider.js";
+import { EntityProviderInterface } from "./EntityProviderInterface.js";
 import { FileManager } from "../data-providers/FileManager.js";
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -7,21 +7,38 @@ const PORT = process.env.PORT || 8080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class ProductsEntityProvider extends BaseEntityProvider {
+export class ProductsEntityProvider { // @todo should implement EntityProviderInterface interface
+    provider;
+
     constructor() {
         const productsProvider = new FileManager(
             path.resolve(__dirname, '../../public/files/products.json'),
             `http://localhost:${PORT}/files/products.json`
         );
-        super(productsProvider);
+        this.provider = productsProvider;
+    }
+
+    getAll = async () => { 
+        return this.provider.getAll();
     }
 
     findById = async (id) => {
-        const productRaw = await super.findById(id);
-        return this.fromRawToProduct(productRaw);
+        const productRaw = await this.provider.findById(id);
+        if(!productRaw) {
+            return;
+        }
+        return ProductsEntityProvider.fromRawToProduct(productRaw);
     }
 
-    fromRawToProduct = (raw) => {
+    save = async (item) => {
+        return this.provider.save(item);
+     }
+
+    deleteById = async (id) => {
+        return this.provider.deleteById(id);
+     }
+
+    static fromRawToProduct = (raw) => {
         const product = new Product(raw.id || 0);
         product.setName(raw.name)
             .setCode(raw.code)

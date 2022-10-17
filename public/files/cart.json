@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "createdTimestamp": 1665978996234,
+        "products": [
+            {
+                "id": 1,
+                "createdTimestamp": 1665629591116,
+                "name": "a product with other name",
+                "code": "aCode",
+                "image": "anImage",
+                "price": 100.5,
+                "stock": 20
+            },
+            {
+                "id": 3,
+                "createdTimestamp": 1665629786854,
+                "name": "a product",
+                "code": "aCode",
+                "image": "anImage",
+                "price": 100.5,
+                "stock": 20
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "createdTimestamp": 1665978998038,
+        "products": []
+    },
+    {
+        "id": 3,
+        "createdTimestamp": 1665978998680,
+        "products": []
+    }
+]

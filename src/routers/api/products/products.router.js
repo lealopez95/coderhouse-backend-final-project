@@ -14,7 +14,13 @@ productsRouter.get('/', async (req, res) => {
 
 productsRouter.get('/:id', async (req, res) => {
     const { id } = req.params;
-    response = await productsManager.findById(id);
+    const response = await productsManager.findById(id);
+    if(!response) {
+        return res.status(404).json({
+            error: -1,
+            message: 'id not found'
+        }); 
+    }
     res.json(response);
 });
 
@@ -23,7 +29,7 @@ productsRouter.post('/', validateIsAdminMiddleware, async (req, res) => {
     if(!name || !code || !image || !price || !stock) {
         return res.status(400).json({
             error: -1,
-            message: 'wrong body format'
+            message: 'wrong params'
         });
     }
     const product = new Product(name, code, image, price, stock);
@@ -39,10 +45,16 @@ productsRouter.put('/:id', validateIsAdminMiddleware, async (req, res) => {
     if(!id || !name || !code || !image || !price || !stock) {
         return res.status(400).json({
             error: -1,
-            message: 'wrong body format'
+            message: 'wrong params'
         });
     }
     const product = await productsManager.findById(id);
+    if(!product) {
+        return res.status(404).json({
+            error: -1,
+            message: 'id not found'
+        }); 
+    }
     product.setName(name)
         .setCode(code)
         .setImage(image)

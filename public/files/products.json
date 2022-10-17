@@ -2,7 +2,7 @@
     {
         "id": 1,
         "createdTimestamp": 1665629591116,
-        "name": "a product",
+        "name": "a product with other name",
         "code": "aCode",
         "image": "anImage",
         "price": 100.5,

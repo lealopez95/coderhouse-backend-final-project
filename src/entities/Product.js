@@ -9,7 +9,7 @@ export class Product {
     price;
     stock;
 
-    constructor(id, name, code, image, price, stock) {
+    constructor(id = 0, name = '', code = '', image = '', price = 0, stock = 0) {
         this.id = id,
         this.name = name;
         this.createdTimestamp = Date.now();
