@@ -1,5 +1,5 @@
 import express from 'express';
-import { validateIsAdminMiddleware } from '../../middlewares/auth.middleware.js';
+import { validateIsAdminMiddleware } from '../../../middlewares/auth.middleware.js';
 import { ProductsEntityProvider } from '../../../entity-providers/ProductsService.js';
 import { Product } from '../../../entities/Product.js';
 
