@@ -1,16 +1,16 @@
-import { EntityProviderInterface } from "./EntityProviderInterface.js";
+import { DAOInterface } from "./DAOInterface.js";
 import { FileManager } from "../data-providers/FileManager.js";
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { Cart } from "../entities/Cart.js";
-import { ProductsEntityProvider } from "./ProductsService.js";
+import { ProductsDAO } from "./ProductsDAO.js";
 
-const productsManager = new ProductsEntityProvider(); 
+const productsManager = new ProductsDAO(); 
 const PORT = process.env.PORT || 8080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class CartEntityProvider { // @todo should implement EntityProviderInterface interface
+export class CartDAO { // @todo should implement DAOInterface interface
     provider;
 
     constructor() {
@@ -30,7 +30,7 @@ export class CartEntityProvider { // @todo should implement EntityProviderInterf
         if(!cartRaw) {
             return;
         }
-        return CartEntityProvider.fromRawToCart(cartRaw);
+        return CartDAO.fromRawToCart(cartRaw);
     }
 
     save = async (item) => {
@@ -46,7 +46,7 @@ export class CartEntityProvider { // @todo should implement EntityProviderInterf
         const products = [];
         for(const product of raw.products) {
             products.push(
-                ProductsEntityProvider.fromRawToProduct(product)
+                ProductsDAO.fromRawToProduct(product)
             );
         }
         cart.setProducts(products)

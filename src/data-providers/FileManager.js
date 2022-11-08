@@ -2,7 +2,7 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import { DataProviderInterface } from './DataProviderInterface.js';
 
-export class FileManager extends DataProviderInterface { // TODO: this should be implements
+export class FileManager extends DataProviderInterface { // TODO: this should be implements TS
     filePath;
     options;
 

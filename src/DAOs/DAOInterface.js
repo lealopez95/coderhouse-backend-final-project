@@ -1,4 +1,4 @@
-export class EntityProviderInterface { // @todo: transform this into an interface with typescript
+export class DAOInterface { // @todo: transform this into an interface with typescript
     getAll = async () => { }
 
     save = async (item) => { }

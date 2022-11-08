@@ -1,9 +1,9 @@
 import express from 'express';
 import { Cart } from '../../../entities/Cart.js';
-import { CartEntityProvider } from '../../../entity-providers/CartService.js';
+import { CartDAO } from '../../../DAOs/CartDAO.js';
 
 const cartRouter = express.Router();
-const cartManager = new CartEntityProvider();
+const cartManager = new CartDAO();
 
 cartRouter.post('/', async (req, res) => {
     const cart = new Cart();

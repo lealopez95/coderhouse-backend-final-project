@@ -1,10 +1,10 @@
 import express from 'express';
 import { validateIsAdminMiddleware } from '../../../middlewares/auth.middleware.js';
-import { ProductsEntityProvider } from '../../../entity-providers/ProductsService.js';
+import { ProductsDAO } from '../../../DAOs/ProductsDAO.js';
 import { Product } from '../../../entities/Product.js';
 
 const productsRouter = express.Router();
-const productsManager = new ProductsEntityProvider(); 
+const productsManager = new ProductsDAO(); 
 
 
 productsRouter.get('/', async (req, res) => {

@@ -1,4 +1,4 @@
-import { EntityProviderInterface } from "./EntityProviderInterface.js";
+import { DAOInterface } from "./DAOInterface.js";
 import { FileManager } from "../data-providers/FileManager.js";
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8080;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class ProductsEntityProvider { // @todo should implement EntityProviderInterface interface
+export class ProductsDAO { // @todo should implement DAOInterface interface
     provider;
 
     constructor() {
